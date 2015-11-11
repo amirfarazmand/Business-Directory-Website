@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>ثبت بیزینس</title>
+    <link href="css/data.css" media="all" rel="stylesheet" type="text/css"/>
+    <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script src="js/underscore.js"></script>
+    <script src="http://www.parsecdn.com/js/parse-1.2.13.min.js"></script>
+    <script src="js/todos.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Todo App Interface -->
+
+    <div id="todoapp">
+      <div class="title">
+        <h1>ثبت بیزینس</h1>
+      </div>
+
+      <div class="content">
+      </div>
+    </div>
+
+    <div id="credits">
+      Powered by <a href="http://www.jorc.com.au">Parse Apps</a><br /><br /></div>
+
+    <!-- Templates -->
+  <script >  var clickValue = "test" </script>
+    <script type="text/template" id="login-template">
+      <header id="header"></header>
+      <div class="login">
+        <form class="login-form">
+          <h2>Log In</h2>
+          <div class="error" style="display:none"></div>
+          <input type="text" id="login-username" placeholder="Your email" />
+          <input type="password" id="login-password" placeholder="Password" />
+          <button>Log In</button>
+        </form>
+
+        <form class="signup-form">
+          <h2>Sign Up</h2>
+          <div class="error" style="display:none"></div>
+          <input type="text" id="signup-username" placeholder="Your email" />
+
+          <input type="password" id="signup-password" placeholder="Create a Password" />
+          <button>Sign Up</button>
+        </form>
+      </div>
+    </script>
+
+    <script type="text/template" id="manage-todos-template">
+            Signed in as <%= Parse.User.current().escape("username") %> (<a href="#" class="log-out">Log out</a>)
+      <div id="user-info">
+      <h2>پس از وارد کردن اطلاعات با کلیک بر گزینه آدرس، و فشار دادن دکمه اینتر اطلاعات شما وارد سیستم میگردد، و در پایین صفحه ظاهر میگردد. با حرکت موس بر روی اطلاعات و کلیک بر روی ضربدر اطلاعات پاک خواهد شد. </h2> 
+      <h2>در صورت هر گونه مشکلی‌ لطفا با شماره یا ایمیل زیر تماس بگیرید</h2> 
+      <h2>info@jorc.com.au</h2>
+      <h2>0413556955</h2> 
+
+      </div>
+
+      <div class="section">
+
+        <header id="header">
+          <input id="new-todo" placeholder="Business Name نام بیزینس" type="text" />
+          <input id="new-todo1" placeholder="JobTitle اسم شغل" type="text" />
+          <input id="new-todo2" placeholder="Phone تلفن" type="text" />
+          <input id="new-todo3" placeholder="Email ایمیل" type="text" />
+          <input id="new-todo4" placeholder="Website وبسایت" type="text" />
+          <input id="new-todo5" placeholder="Address آدرس" type="text" />
+          <input id="new-todo6" placeholder="Post Code کد پستی" type="text" />
+           <div class="login"> <button class="submit" type="button" id="new-todo7">Send Data !بفرست</button></div>
+        </header>
+
+        <div id="main">
+          <input id="toggle-all" type="checkbox">
+          <label for="toggle-all">Mark all as complete</label>
+          
+          <ul id="todo-list">
+            <img src='images/spinner.gif' class='spinner' />
+          </ul>
+        </div>
+
+        <div id="todo-stats"></div>
+      </div>
+
+    </script>
+
+ <script type="text/template" id="item-template">
+      <li class="<%= done ? 'completed' : '' %>">
+  <div class="view">
+    <li><label id="content" class="todo-content" onClick="reply_click(this.id)" ><%= _.escape(content) %></label></li>
+    <li><label id="job" onClick="reply_click(this.id)" class="todo-job"><%= _.escape(job) %></label></li>
+     <li><label id="phone" onClick="reply_click(this.id)" class="todo-phone"><%= _.escape(phone) %></label></li>
+       <li><label id="email" onClick="reply_click(this.id)" class="todo-email"><%= _.escape(email) %></label></li>
+        <li><label id="web" onClick="reply_click(this.id)" class="todo-website"><%= _.escape(web) %></label></li>
+         <li><label id="address" onClick="reply_click(this.id)" class="todo-address"><%= _.escape(address) %></label></li>
+           <li><label id="postcode" onClick="reply_click(this.id)" class="todo-postcode"><%= _.escape(postcode) %></label></li>
+    <button class="todo-destroy"></button>
+  </div>
+  /*<input class="edit" value="<%= _.escape(content) %>">
+  <input id= "jobValue" class="edit1"  value="<%= _.escape(job) %>"></li> */
+ </script>
+ <script type="text/javascript">
+function reply_click(clicked_id)
+{
+  clickValue = clicked_id
+  //alert(clicked_id)
+  //var label = document.getElementById(clicked_id);
+      //alert(clickValue);
+}
+</script>
+
+    <script type="text/template" id="stats-template">  </script>
+
+  </body>
+
+</html>
